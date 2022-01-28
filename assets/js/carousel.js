@@ -24,7 +24,7 @@ function Carousel() {
 
 Carousel.prototype = {
 
-    gotoNth (n) {
+    gotoNth(n) {
         this.slides[this.currentSlide].classList.toggle('active');
         this.indicators[this.currentSlide].classList.toggle('active');
         this.currentSlide = (n + this.SLIDES_COUNT) % this.SLIDES_COUNT;
@@ -93,18 +93,19 @@ Carousel.prototype = {
         },
     
     initListeners() {
-      this.pauseBtn.addEventListener('click', this.pausePlay);
-      this.prevBtn.addEventListener('click', this.prev);
-      this.nextButton.addEventListener('click', this.next);
-      this.indicatorsContainer.addEventListener('click', this.indicate);
-      this.containter.addEventListener('touchstart', this.swipeStart)
-      this.containter.addEventListener('touchend', this.swipeEnd)
-      document.addEventListener('keydown', this.pressKey);
+      this.pauseBtn.addEventListener('click', this.pausePlay.bind(this));
+      this.prevBtn.addEventListener('click', this.prev.bind(this));
+      this.nextButton.addEventListener('click', this.next.bind(this));
+      this.indicatorsContainer.addEventListener('click', this.indicate.bind(this));
+      this.containter.addEventListener('touchstart', this.swipeStart.bind(this))
+      this.containter.addEventListener('touchend', this.swipeEnd.bind(this))
+      document.addEventListener('keydown', this.pressKey.bind(this));
       },
     
     init() {
       this.initListeners();
-      this.timerID = setInterval(this.gotoNext, this.interval);
+      this.timerID = setInterval( () => this.gotoNext(), this.interval); //or =>
+      // this.timerID = setInterval( this.gotoNext.bind(this), this.interval);  - restabilirea contextului pentru setInterva, setTimeout
       },
     };
 
