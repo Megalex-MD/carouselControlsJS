@@ -23,7 +23,6 @@ function Carousel() {
 }
 
 Carousel.prototype = {
-
     gotoNth(n) {
         this.slides[this.currentSlide].classList.toggle('active');
         this.indicators[this.currentSlide].classList.toggle('active');
@@ -32,37 +31,37 @@ Carousel.prototype = {
         this.indicators[this.currentSlide].classList.toggle('active');
         },
       
-    gotoNext () {
+    gotoNext() {
         this.gotoNth(this.currentSlide + 1);
         },
     
-    gotoPrev () {
+    gotoPrev() {
         this.gotoNth(this.currentSlide - 1);
         },
 
-    pause () {
+    pause() {
         if(this.isPlaying){
         clearInterval(this.timerID);
         this.pauseBtn.innerHTML = this.FA_PLAY;
         this.isPlaying = false;
         }},
         
-    play () {
-      this.timerID = setInterval(this.gotoNext, this.interval);
+    play() {
+      this.timerID = setInterval(() => this.gotoNext(), this.interval);
       this.pauseBtn.innerHTML = this.FA_PAUSE;
       this.isPlaying = true;
      },
         
-    pausePlay () {
+    pausePlay() {
       this.isPlaying ? this.pause() : this.play();
        },
         
-    next () {
+    next() {
       this.pause();
       this.gotoNext();
        },
       
-    prev () {
+    prev() {
       this.pause();
       this.gotoPrev();
         },
@@ -72,7 +71,7 @@ Carousel.prototype = {
     
       if (this.target.classList.contains('indicator')){
         this.pause();
-        this.gotoNth(+this.target.getAttribute('data-slide-to'));
+        this.gotoNth(+this.target.dataset.slideTo);
        };
       },
     
@@ -90,7 +89,7 @@ Carousel.prototype = {
       this.swipeEndX = e.changedTouches[0].pageX;
       this.swipeStartX - this.swipeEndX < 100 && this.prev();
       this.swipeStartX - this.swipeEndX > -100 && this.next();
-        },
+      },
     
     initListeners() {
       this.pauseBtn.addEventListener('click', this.pausePlay.bind(this));
@@ -104,8 +103,9 @@ Carousel.prototype = {
     
     init() {
       this.initListeners();
+
       this.timerID = setInterval( () => this.gotoNext(), this.interval); //or =>
-      // this.timerID = setInterval( this.gotoNext.bind(this), this.interval);  - restabilirea contextului pentru setInterva, setTimeout
+      // this.timerID = setInterval(this.gotoNext.bind(this), this.interval);  - restabilirea contextului pentru setInterva, setTimeout
       },
     };
 
