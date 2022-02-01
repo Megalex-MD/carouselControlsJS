@@ -1,8 +1,30 @@
 class Carousel{
-  constructor(containerID = '#carousel', slideID = '.slide', interval = 2000) {
-    this.container = document.querySelector(containerID);
-    this.slides = this.container.querySelectorAll(slideID);
-    this.interval = interval;
+  constructor(params) {
+    
+    const settings = this._initConfig(params);
+    
+    this.container = document.querySelector(settings.containerID);
+    this.slides = this.container.querySelectorAll(settings.slideID);
+    this.interval = settings.interval;
+    this.isPlaying = settings.isPlaying;
+    }
+
+    _initConfig(params){
+      const defaultSettings = {
+        containerID: '#carousel',
+        slideID: '.slide',
+        interval: 2000,
+        isPlaying: true
+      }
+
+      if(typeof params !== 'undefined'){
+      defaultSettings.containerID = params.containerID || defaultSettings.containerID;
+      defaultSettings.slideID = params.slideID || defaultSettings.slideID;
+      defaultSettings.interval = params.interval || defaultSettings.interval;
+      defaultSettings.isPlaying = params.isPlaying || defaultSettings.isPlaying;
+      }
+     
+      return defaultSettings;
     }
 
     _initProps(){
@@ -16,7 +38,6 @@ class Carousel{
       this.FA_NEXT = '<i class="fas fa-angle-right"></i>';
       
       this.currentSlide = 0;
-      this.isPlaying = true;
     }
 
     _initControls(){
@@ -130,4 +151,6 @@ class Carousel{
       this.timerID = setInterval( () => this._gotoNext(), this.interval); //or =>
       // this.timerID = setInterval(this.gotoNext.bind(this), this.interval);  - restabilirea contextului pentru setInterva, setTimeout
       }
-}
+};
+
+export default Carousel;
