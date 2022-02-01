@@ -1,23 +1,25 @@
         
-    function SwipeCarousel() {
-      Carousel.apply(this, arguments)
+    class SwipeCarousel extends Carousel{
+    
+    _swipeStart (e) {
+      this.swipeStartX = e.changedTouches[0].pageX;
     };
 
-    SwipeCarousel.prototype = Object.create(Carousel.prototype)
-    SwipeCarousel.prototype.constructor = SwipeCarousel;
+    _swipeEnd (e) {
+      this.swipeEndX = e.changedTouches[0].pageX;
+      this.swipeStartX - this.swipeEndX < -100 && this.prev();
+      this.swipeStartX - this.swipeEndX > 100 && this.next();
+    };  
 
-    SwipeCarousel.prototype._swipeStart = function (e) {
-        this.swipeStartX = e.changedTouches[0].pageX;
-      };
-
-    SwipeCarousel.prototype._swipeEnd = function (e) {
-        this.swipeEndX = e.changedTouches[0].pageX;
-        this.swipeStartX - this.swipeEndX < -100 && this.prev();
-        this.swipeStartX - this.swipeEndX > 100 && this.next();
-      };  
-   
-    SwipeCarousel.prototype._initListeners = function (){
-      Carousel.prototype._initListeners.apply(this);
+    _initListeners() {
+      super._initListeners.apply(this);
       this.container.addEventListener('touchstart', this._swipeStart.bind(this))
       this.container.addEventListener('touchstart', this._swipeEnd.bind(this))
     };
+    };
+
+
+
+ 
+   
+ 
