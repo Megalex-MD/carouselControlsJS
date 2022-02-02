@@ -1,30 +1,12 @@
 class Carousel{
-  constructor(params) {
+  constructor(p) {
     
-    const settings = this._initConfig(params);
+    const settings = {...{containerID: '#carousel', slideID: '.slide', interval: 2000, isPlaying: true}, ...p};
     
     this.container = document.querySelector(settings.containerID);
     this.slides = this.container.querySelectorAll(settings.slideID);
     this.interval = settings.interval;
     this.isPlaying = settings.isPlaying;
-    }
-
-    _initConfig(params){
-      const defaultSettings = {
-        containerID: '#carousel',
-        slideID: '.slide',
-        interval: 2000,
-        isPlaying: true
-      }
-
-      if(typeof params !== 'undefined'){
-      defaultSettings.containerID = params.containerID || defaultSettings.containerID;
-      defaultSettings.slideID = params.slideID || defaultSettings.slideID;
-      defaultSettings.interval = params.interval || defaultSettings.interval;
-      defaultSettings.isPlaying = params.isPlaying || defaultSettings.isPlaying;
-      }
-     
-      return defaultSettings;
     }
 
     _initProps(){
@@ -42,7 +24,10 @@ class Carousel{
 
     _initControls(){
       const controls = document.createElement('div');
-      const PAUSE = `<span class="control control-pause" id="pause-btn">${this.FA_PAUSE}</span>`;
+      const PAUSE = `<span class="control control-pause" id="pause-btn">
+                     <span id="fa-pause-icon">${this.FA_PAUSE}</span>
+                     <span id="fa-play-icon">${this.FA_PLAY}</span>
+                     </span>`;
       const PREV = `<span class="control control-prev" id="prev-btn">${this.FA_PREV}</span>`;
       const NEXT = `<span class="control control-next" id="next-btn">${this.FA_NEXT}</span>`;
 
@@ -54,6 +39,12 @@ class Carousel{
       this.pauseBtn = this.container.querySelector('#pause-btn');
       this.prevBtn = this.container.querySelector('#prev-btn');
       this.nextBtn = this.container.querySelector('#next-btn');
+
+      this.pauseIcon = this.container.querySelector('#fa-pause-icon')
+      this.playIcon = this.container.querySelector('#fa-play-icon')
+
+      this.isPlaying ? this.pauseIcon.style.opacity = 1 : his.playIcon.style.opacity = 1;
+     
     }
     
     _initIndicators(){
@@ -101,16 +92,18 @@ class Carousel{
         
     _pause() {
       if(this.isPlaying){
-      clearInterval(this.timerID);
-      this.pauseBtn.innerHTML = this.FA_PLAY;
-      this.isPlaying = false;
+        this.pauseIcon.style.opacity = 0;
+        this.playIcon.style.opacity = 1;
+        this.isPlaying = false;
+        clearInterval(this.timerID);
     }
   }
                 
     _play() {
-      this.timerID = setInterval(() => this._gotoNext(), this.interval);
-      this.pauseBtn.innerHTML = this.FA_PAUSE;
+      this.pauseIcon.style.opacity = 1;
+      this.playIcon.style.opacity = 0;
       this.isPlaying = true;
+      this.timerID = setInterval(() => this._gotoNext(), this.interval);
     }
         
     _indicate (e) {
@@ -148,8 +141,8 @@ class Carousel{
       this._initIndicators();
       this._initListeners();
 
-      this.timerID = setInterval( () => this._gotoNext(), this.interval); //or =>
-      // this.timerID = setInterval(this.gotoNext.bind(this), this.interval);  - restabilirea contextului pentru setInterva, setTimeout
+      if(this.isPlaying) this.timerID = setInterval( () => this._gotoNext(), this.interval); //or =>
+        // this.timerID = setInterval(this.gotoNext.bind(this), this.interval);  - restabilirea contextului pentru setInterva, setTimeout
       }
 };
 
