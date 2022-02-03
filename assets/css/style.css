@@ -2,11 +2,109 @@
 essential styles:
 these make the slideshow work
 */
+* {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  margin: 0;
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.header {
+  position: relative;
+  min-height: 100px;
+}
+
+.header-menu {
+  position: absolute;
+  z-index: 2;
+  width: 100%;
+  top: 0;
+  left: 0;
+}
+
+.header-menu__container {
+  width: 100%;
+  max-width: 1280px;
+  margin-left: auto;
+  margin-right: auto;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  justify-items: end;
+  padding: 20px 0;
+}
+
+.footer__container,
+.main-container {
+  width: 100%;
+  max-width: 1280px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.header-logo__img {
+  width: 100px;
+}
+
+.header-navbar__list {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  gap: 1.125rem;
+  font-size: 1rem;
+  list-style: none;
+  font-weight: bold;
+}
+
+.header-navbar__item {
+  text-decoration: none;
+}
+
+.header-navbar__item:last-of-type {
+  padding-right: 0.625rem;
+}
+
+.header-navbar__link {
+  text-decoration: none;
+  color: #000000;
+  -webkit-transition: border-bottom 0.5s;
+  -o-transition: border-bottom 0.5s;
+  transition: border-bottom 0.5s;
+  position: relative;
+}
+
+.header-navbar__link::before {
+  content: "";
+  position: absolute;
+  bottom: -5px;
+  right: 0;
+  width: 0;
+  height: 3px;
+  background-color: #000000;
+  -webkit-transition: width 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+  -o-transition: width 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+  transition: width 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.header-navbar__link:hover::before {
+  left: 0;
+  right: auto;
+  width: 100%;
+}
+
 .slides {
   position: relative;
-  height: 150px;
+  width: 90%;
+  height: 600px;
   padding: 0px;
   margin: 0px;
+  margin-left: auto;
+  margin-right: auto;
   list-style-type: none;
 }
 
@@ -28,42 +126,85 @@ these make the slideshow work
   z-index: 1;
 }
 
-/*
-non-essential styles:
-just for appearance; change whatever you want
-*/
 .slide {
-  font-size: 40px;
-  padding: 40px;
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box;
+  font-size: 1.75em;
   background: #333;
-  color: #fff;
+  color: black;
+  text-shadow: 1px 1px;
+}
+
+.slide-text {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  height: 100%;
+  padding-left: 50px;
+  padding-top: 5em;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  color: #ffffff;
+  text-shadow: 2.5px 2px black;
+}
+
+.slide-btn {
+  position: absolute;
+  bottom: 6em;
+  left: 3em;
+  font-size: 1.25em;
+  z-index: 10;
+  border: 2px solid transparent;
+  border-radius: 30px;
+  color: black;
+  padding: 4.5px 18.5px;
+  -webkit-transition: background-color 0.2s;
+  -o-transition: background-color 0.2s;
+  transition: background-color 0.2s;
+  cursor: pointer;
+}
+
+.slide-btn.hidden {
+  display: none;
+}
+
+.slide-btn:hover {
+  background-color: #b2b2b2;
 }
 
 .slide:nth-of-type(1) {
-  background: red;
+  background-image: url(../img/Best-Running-Shoes-For-Wide-Feet.jpg);
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
 }
 
 .slide:nth-of-type(2) {
-  background: orange;
+  background-image: url(../img/best-mens-running-tights.jpg);
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
 }
 
 .slide:nth-of-type(3) {
-  background: green;
+  background-image: url(../img/kids3.jpg);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-color: white;
 }
 
 .slide:nth-of-type(4) {
-  background: blue;
+  background-image: url(../img/wired-nike.jpg);
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
 }
 
 .slide:nth-of-type(5) {
-  background: purple;
-}
-
-body {
-  margin: 0;
-  font-family: Arial, Helvetica, sans-serif;
+  background-image: url(../img/slide5.jpeg);
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
 }
 
 .carousel {
@@ -80,36 +221,133 @@ body {
 }
 
 .control {
-  background-color: #cccccc;
   display: block;
-  padding: 0.5em 1em;
-  cursor: pointer;
   -webkit-user-select: none;
      -moz-user-select: none;
       -ms-user-select: none;
           user-select: none;
-}
-
-.indicator {
-  background-color: #cccccc;
-  display: block;
-  padding: 0.5em 1em;
+  position: absolute;
   cursor: pointer;
-  -webkit-user-select: none;
-     -moz-user-select: none;
-      -ms-user-select: none;
-          user-select: none;
-}
-
-.indicator.active {
-  background-color: red;
 }
 
 .control-pause {
-  position: relative;
+  color: transparent;
+  z-index: 5;
+  font-size: 10em;
+  top: 50%;
+  left: 50%;
+  -webkit-transition: 1s;
+  -o-transition: 1s;
+  transition: 1s;
+}
+
+.control-pause:hover {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.control-prev {
+  position: absolute;
+  font-size: 3em;
+  color: rgba(255, 255, 255, 0.4);
+  z-index: 2;
+  top: 50%;
+  left: 1rem;
+  -webkit-transform: translateY(-50%);
+      -ms-transform: translateY(-50%);
+          transform: translateY(-50%);
+  -webkit-transition: color 0.5s;
+  -o-transition: color 0.5s;
+  transition: color 0.5s;
+}
+
+.control-prev:hover {
+  color: #ffffff;
+}
+
+.control-next {
+  position: absolute;
+  font-size: 3em;
+  color: rgba(255, 255, 255, 0.4);
+  z-index: 2;
+  top: 50%;
+  right: 1rem;
+  -webkit-transform: translateY(-50%);
+      -ms-transform: translateY(-50%);
+          transform: translateY(-50%);
+  -webkit-transition: color 0.5s;
+  -o-transition: color 0.5s;
+  transition: color 0.5s;
+}
+
+.control-next:hover {
+  color: #ffffff;
+}
+
+.indicators {
+  position: absolute;
+  bottom: 7%;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+      -ms-transform: translateX(-50%);
+          transform: translateX(-50%);
+  z-index: 2;
+}
+
+.indicator {
+  border: 3px solid white;
+  border-radius: 30px;
+  z-index: 2;
+  display: block;
+  padding: 0.5em;
+  cursor: pointer;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  background-color: transparent;
+}
+
+.indicator.active {
+  border-color: red;
+  -webkit-box-shadow: 0px 0px 5px 2px red;
+          box-shadow: 0px 0px 5px 2px red;
 }
 
 .control-pause > span {
   position: absolute;
   opacity: 0;
+  -webkit-transform: translate(-50%, -50%);
+      -ms-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+}
+
+.footer {
+  min-height: 100px;
+  margin-top: 2em;
+}
+
+.footer__social {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  gap: 20px;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.footer__social-link {
+  padding-top: 2rem;
+  font-size: 2rem;
+  color: rgba(0, 0, 0, 0.8);
+  -webkit-transition: color 0.5s;
+  -o-transition: color 0.5s;
+  transition: color 0.5s;
+}
+
+.footer__social-link:hover {
+  color: black;
 }

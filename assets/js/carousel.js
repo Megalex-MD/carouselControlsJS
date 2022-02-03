@@ -7,9 +7,11 @@ class Carousel{
     this.slides = this.container.querySelectorAll(settings.slideID);
     this.interval = settings.interval;
     this.isPlaying = settings.isPlaying;
-    }
-
-    _initProps(){
+    this.slidesContainer = document.querySelector('.slides');
+    this.footer = document.querySelector('footer')
+  }
+  
+  _initProps(){
       this.SLIDES_COUNT = this.slides.length;
       this.CODE_LEFT_ARROW = 'ArrowLeft';
       this.CODE_RIGHT_ARROW = 'ArrowRight';
@@ -23,6 +25,7 @@ class Carousel{
     }
 
     _initControls(){
+      
       const controls = document.createElement('div');
       const PAUSE = `<span class="control control-pause" id="pause-btn">
                      <span id="fa-pause-icon">${this.FA_PAUSE}</span>
@@ -34,7 +37,7 @@ class Carousel{
       controls.classList.add('controls')
       controls.innerHTML = PAUSE + PREV + NEXT;
 
-      this.container.append(controls);
+      this.slidesContainer.append(controls);
 
       this.pauseBtn = this.container.querySelector('#pause-btn');
       this.prevBtn = this.container.querySelector('#prev-btn');
@@ -61,7 +64,7 @@ class Carousel{
         indicators.append(indicator);
       };
     
-      this.container.append(indicators);
+      this.slidesContainer.append(indicators);
       this.indsContainer = this.container.querySelector('.indicators')
       this.indItems = this.container.querySelectorAll('.indicator');
     }
