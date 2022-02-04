@@ -1,0 +1,27 @@
+@use "../../mixins" as *;
+@use "../../presets" as *;
+
+.indicators {
+  @include position;
+  position: absolute;
+  bottom: 7%;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2;
+}
+
+.indicator {
+  border: 3px solid $color-white;
+  border-radius: $gap-lg;
+  z-index: 2;
+  display: block;
+  padding: 0.5em;
+  cursor: pointer;
+  user-select: none;
+  background-color: transparent;
+
+  &.active {
+    border-color: $color-red;
+    box-shadow: 0px 0px 5px 2px $color-red;
+  }
+}

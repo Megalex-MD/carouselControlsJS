@@ -1,0 +1,13 @@
+@use "../presets" as *;
+
+@mixin position {
+  display: flex;
+  gap: 1em;
+  margin-top: 1em;
+}
+
+@mixin bg-position {
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}

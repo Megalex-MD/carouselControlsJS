@@ -1,0 +1,58 @@
+@use "../../mixins" as *;
+@use "../../presets" as *;
+
+.control {
+  display: block;
+  user-select: none;
+  position: absolute;
+  cursor: pointer;
+
+  &-pause {
+    color: transparent;
+    z-index: 5;
+    font-size: 10em;
+    top: 50%;
+    left: 50%;
+    transition: 1s;
+
+    &:hover {
+      color: rgb($color-white, 0.5);
+    }
+
+    & > span {
+      position: absolute;
+      opacity: 0;
+      transform: translate(-50%, -50%);
+    }
+  }
+
+  &-prev {
+    position: absolute;
+    font-size: 3em;
+    color: rgb($color-white, 0.4);
+    z-index: 2;
+    top: 50%;
+    left: 1rem;
+    transform: translateY(-50%);
+    transition: color 0.5s;
+
+    &:hover {
+      color: $color-white;
+    }
+  }
+
+  &-next {
+    position: absolute;
+    font-size: 3em;
+    color: rgb($color-white, 0.4);
+    z-index: 2;
+    top: 50%;
+    right: 1rem;
+    transform: translateY(-50%);
+    transition: color 0.5s;
+
+    &:hover {
+      color: $color-white;
+    }
+  }
+}

@@ -1,0 +1,71 @@
+@use "../presets" as *;
+@use "../mixins" as *;
+
+.header-menu__container {
+  @extend %container;
+
+  display: grid;
+  grid-template-columns: auto 1fr;
+  align-items: center;
+  justify-items: end;
+  padding: $gap 0;
+}
+
+.header {
+  position: relative;
+  min-height: $gap-x5;
+
+  &-menu {
+    position: absolute;
+    z-index: 2;
+    width: 100%;
+    top: 0;
+    left: 0;
+  }
+
+  &-logo__img {
+    width: $gap-x5;
+  }
+
+  &-navbar {
+    &__list {
+      display: flex;
+      gap: 1.125rem;
+      font-size: 1rem;
+      list-style: none;
+      font-weight: bold;
+    }
+
+    &__item {
+      text-decoration: none;
+
+      &:last-of-type {
+        padding-right: 0.625rem;
+      }
+    }
+
+    &__link {
+      text-decoration: none;
+      color: $color-black;
+      transition: border-bottom 0.5s;
+      position: relative;
+
+      &::before {
+        content: "";
+        position: absolute;
+        bottom: -5px;
+        right: 0;
+        width: 0;
+        height: 3px;
+        background-color: $color-black;
+        transition: width 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+      }
+
+      &:hover::before {
+        left: 0;
+        right: auto;
+        width: 100%;
+      }
+    }
+  }
+}

@@ -1,0 +1,15 @@
+@use "../presets" as *;
+@use "../mixins" as *;
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+}
+
+body {
+  font-family: $font-header;
+}
+
+.footer__container {
+  @extend %container;
+}
