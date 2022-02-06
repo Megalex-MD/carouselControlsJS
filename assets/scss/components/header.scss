@@ -5,10 +5,16 @@
   @extend %container;
 
   display: grid;
-  grid-template-columns: auto 1fr;
   align-items: center;
-  justify-items: end;
-  padding: $gap 0;
+  padding: $gap;
+
+  @include md-min {
+    grid-template-columns: auto 1fr;
+    justify-items: end;
+  }
+  @include md {
+    justify-items: center;
+  }
 }
 
 .header {
@@ -24,16 +30,28 @@
   }
 
   &-logo__img {
-    width: $gap-x5;
+    @include md-min {
+      width: $gap-x5;
+    }
+    @include md {
+      width: $gap-x4;
+      margin-bottom: 0.25rem;
+    }
   }
 
   &-navbar {
     &__list {
       display: flex;
-      gap: 1.125rem;
-      font-size: 1rem;
       list-style: none;
       font-weight: bold;
+      gap: 1rem;
+
+      @include lg-md {
+        font-size: 0.85rem;
+      }
+      @include md {
+        font-size: 0.75rem;
+      }
     }
 
     &__item {

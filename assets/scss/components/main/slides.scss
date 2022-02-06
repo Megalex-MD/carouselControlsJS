@@ -3,7 +3,7 @@
 
 .slides {
   position: relative;
-  width: 90%;
+  // width: 90%;
   height: calc($gap-x5 * 6);
   padding: 0px;
   margin: 0px;
@@ -22,10 +22,14 @@
   z-index: -1;
   transition: opacity 1s;
 
-  font-size: 1.75em;
   background: $color-darkgrey;
   color: $color-black;
   text-shadow: 1px 1px;
+  font-size: 1.75em;
+
+  @include md {
+    font-size: 1.25em;
+  }
 
   &.active {
     opacity: 1;
@@ -40,6 +44,10 @@
     align-items: center;
     color: $color-white;
     text-shadow: 2.5px 2px $color-black;
+
+    @include md {
+      padding-top: 7em;
+    }
   }
 
   &-btn {
@@ -55,6 +63,11 @@
     transition: background-color 0.2s;
     cursor: pointer;
 
+    @include md {
+      font-size: 1em;
+      bottom: 8.5em;
+    }
+
     &:hover {
       background-color: $color-lightgrey;
     }
@@ -68,6 +81,10 @@
   &:nth-of-type(2) {
     background-image: url(../img/best-mens-running-tights.jpg);
     @include bg-position;
+
+    @include lg {
+      background-position: right;
+    }
   }
 
   &:nth-of-type(3) {

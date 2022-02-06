@@ -1,6 +1,11 @@
 @use "../presets" as *;
 @use "../mixins" as *;
 
+.footer__container {
+  @extend %container;
+  padding: 0 $gap;
+}
+
 .footer {
   min-height: $gap-x5;
   margin-top: 2em;
@@ -16,6 +21,10 @@
       font-size: 2rem;
       color: rgb($color-black, 0.8);
       transition: color 0.5s;
+
+      @include md {
+        font-size: 1.75rem;
+      }
 
       &:hover {
         color: $color-black;
