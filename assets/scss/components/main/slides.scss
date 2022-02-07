@@ -2,103 +2,120 @@
 @use "../../presets" as *;
 
 .slides {
-  position: relative;
-  // width: 90%;
+position: relative;
+
+  width: 100%;
   height: calc($gap-x5 * 6);
-  padding: 0px;
-  margin: 0px;
-  margin-left: auto;
+  margin: 0;
   margin-right: auto;
+  margin-left: auto;
+  padding: 0;
+
   list-style-type: none;
 }
 
 .slide {
-  position: absolute;
-  left: 0px;
-  top: 0px;
+position: absolute;
+  z-index: -1;
+  top: 0;
+  left: 0;
+
   width: 100%;
   height: 100%;
-  opacity: 0;
-  z-index: -1;
+
   transition: opacity 1s;
 
-  background: $color-darkgrey;
+  opacity: 0;
   color: $color-black;
+  background: $color-darkgrey;
   text-shadow: 1px 1px;
+
   font-size: 1.75em;
 
   @include md {
-    font-size: 1.25em;
+font-size: 1.25em;
   }
 
   &.active {
+z-index: 1;
+
     opacity: 1;
-    z-index: 1;
   }
 
   &-text {
-    display: flex;
-    height: 100%;
-    padding-left: 50px;
-    padding-top: 5em;
+display: flex;
     align-items: center;
+
+    height: 100%;
+    padding-top: 5em;
+    padding-left: 50px;
+
     color: $color-white;
     text-shadow: 2.5px 2px $color-black;
 
     @include md {
-      padding-top: 7em;
+padding-top: 7em;
     }
   }
 
   &-btn {
-    position: absolute;
+position: absolute;
+    z-index: 10;
     bottom: 6em;
     left: 3em;
-    font-size: 1.25em;
-    z-index: 10;
+
+    padding: 4.5px 18.5px;
+
+    cursor: pointer;
+    transition: background-color 0.2s;
+
+    color: $color-black;
     border: 2px solid transparent;
     border-radius: $gap-lg;
-    color: $color-black;
-    padding: 4.5px 18.5px;
-    transition: background-color 0.2s;
-    cursor: pointer;
+
+    font-size: 1.25em;
 
     @include md {
+bottom: 8.5em;
+
       font-size: 1em;
-      bottom: 8.5em;
     }
 
     &:hover {
-      background-color: $color-lightgrey;
+background-color: $color-lightgrey;
     }
   }
 
   &:nth-of-type(1) {
-    background-image: url(../img/Best-Running-Shoes-For-Wide-Feet.jpg);
+background-image: url(../img/Best-Running-Shoes-For-Wide-Feet.jpg);
+
     @include bg-position;
   }
 
   &:nth-of-type(2) {
-    background-image: url(../img/best-mens-running-tights.jpg);
-    @include bg-position;
+background-image: url(../img/best-mens-running-tights.jpg);
 
+    @include bg-position;
     @include lg {
-      background-position: right;
+background-position: right;
     }
   }
 
   &:nth-of-type(3) {
-    background-image: url(../img/kids3.jpg);
+background-image: url(../img/kids3.jpg);
+
     @include bg-position;
   }
 
   &:nth-of-type(4) {
-    background-image: url(../img/wired-nike.jpg);
+background-image: url(../img/wired-nike.jpg);
+
     @include bg-position;
   }
 
   &:nth-of-type(5) {
-    background-image: url(../img/slide5.jpeg);
+background-image: url(../img/slide5.jpeg);
+
     @include bg-position;
   }
 }

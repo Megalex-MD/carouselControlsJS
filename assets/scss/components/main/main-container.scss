@@ -2,15 +2,15 @@
 @use "../../presets" as *;
 
 .main-container {
-  @extend %container;
+margin-bottom: 4rem;
   padding: 0 $gap;
-  margin-bottom: 4rem;
 
+  @extend %container;
   @include md {
-    margin-bottom: 2.5rem;
+margin-bottom: 2.5rem;
   }
 }
 
 .carousel {
-  margin: 1em;
+margin: 1em;
 }

@@ -2,86 +2,96 @@
 @use "../mixins" as *;
 
 .header-menu__container {
-  @extend %container;
-
-  display: grid;
+display: grid;
   align-items: center;
+
   padding: $gap;
 
+  @extend %container;
   @include md-min {
-    grid-template-columns: auto 1fr;
+grid-template-columns: auto 1fr;
     justify-items: end;
   }
   @include md {
-    justify-items: center;
+justify-items: center;
   }
 }
 
 .header {
-  position: relative;
+position: relative;
+
   min-height: $gap-x5;
 
   &-menu {
-    position: absolute;
+position: absolute;
     z-index: 2;
-    width: 100%;
     top: 0;
     left: 0;
+
+    width: 100%;
   }
 
   &-logo__img {
-    @include md-min {
-      width: $gap-x5;
+@include md-min {
+width: $gap-x5;
     }
     @include md {
-      width: $gap-x4;
+width: $gap-x4;
       margin-bottom: 0.25rem;
     }
   }
 
   &-navbar {
-    &__list {
-      display: flex;
-      list-style: none;
-      font-weight: bold;
-      gap: 1rem;
+&__list {
+display: flex;
 
+      list-style: none;
+
+      font-weight: bold;
+
+      gap: 1rem;
       @include lg-md {
-        font-size: 0.85rem;
+font-size: 0.85rem;
       }
       @include md {
-        font-size: 0.75rem;
+font-size: 0.75rem;
       }
     }
 
     &__item {
-      text-decoration: none;
+text-decoration: none;
 
       &:last-of-type {
-        padding-right: 0.625rem;
+padding-right: 0.625rem;
       }
     }
 
     &__link {
+position: relative;
+
+      transition: border-bottom 0.5s;
       text-decoration: none;
+
       color: $color-black;
-      transition: border-bottom 0.5s;
-      position: relative;
 
       &::before {
-        content: "";
-        position: absolute;
-        bottom: -5px;
+position: absolute;
         right: 0;
+        bottom: -5px;
+
         width: 0;
         height: 3px;
-        background-color: $color-black;
+
+        content: "";
         transition: width 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+
+        background-color: $color-black;
       }
 
       &:hover::before {
+right: auto;
         left: 0;
-        right: auto;
+
         width: 100%;
       }
     }

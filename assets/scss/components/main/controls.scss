@@ -2,70 +2,80 @@
 @use "../../presets" as *;
 
 .control {
+position: absolute;
+
   display: block;
-  user-select: none;
-  position: absolute;
+
   cursor: pointer;
+  user-select: none;
+
   font-size: 3em;
 
   &-pause {
-    color: transparent;
-    z-index: 5;
-    font-size: 10em;
+z-index: 5;
     top: 50%;
     left: 50%;
+
     transition: 1s;
 
+    color: transparent;
+
+    font-size: 10em;
+
     @include md {
-      font-size: 6em;
+font-size: 6em;
     }
 
     &:hover {
-      color: rgb($color-white, 0.5);
+color: rgb($color-white, 0.5);
     }
 
     & > span {
-      position: absolute;
-      opacity: 0;
+position: absolute;
+
       transform: translate(-50%, -50%);
+
+      opacity: 0;
     }
   }
 
   &-prev {
-    position: absolute;
-    // font-size: 3em;
-    color: rgb($color-white, 0.4);
+position: absolute;
     z-index: 2;
     top: 50%;
     left: 1rem;
-    transform: translateY(-50%);
+
     transition: color 0.5s;
+    transform: translateY(-50%);
+
+    color: rgb($color-white, 0.4);
 
     @include md {
-      font-size: 2em;
+font-size: 2em;
     }
 
     &:hover {
-      color: $color-white;
+color: $color-white;
     }
   }
 
   &-next {
-    position: absolute;
-    // font-size: 3em;
-    color: rgb($color-white, 0.4);
+position: absolute;
     z-index: 2;
     top: 50%;
     right: 1rem;
-    transform: translateY(-50%);
+
     transition: color 0.5s;
+    transform: translateY(-50%);
+
+    color: rgb($color-white, 0.4);
 
     @include md {
-      font-size: 2em;
+font-size: 2em;
     }
 
     &:hover {
-      color: $color-white;
+color: $color-white;
     }
   }
 }

@@ -2,32 +2,37 @@
 @use "../mixins" as *;
 
 .footer__container {
+padding: 0 $gap;
+
   @extend %container;
-  padding: 0 $gap;
 }
 
 .footer {
-  min-height: $gap-x5;
+min-height: $gap-x5;
   margin-top: 2em;
 
   &__social {
-    display: flex;
-    justify-content: center;
+display: flex;
     align-items: center;
+    justify-content: center;
+
     gap: $gap;
 
     &-link {
-      padding-top: 2rem;
-      font-size: 2rem;
-      color: rgb($color-black, 0.8);
+padding-top: 2rem;
+
       transition: color 0.5s;
 
+      color: rgb($color-black, 0.8);
+
+      font-size: 2rem;
+
       @include md {
-        font-size: 1.75rem;
+font-size: 1.75rem;
       }
 
       &:hover {
-        color: $color-black;
+color: $color-black;
       }
     }
   }

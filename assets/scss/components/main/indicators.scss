@@ -2,31 +2,38 @@
 @use "../../presets" as *;
 
 .indicators {
-  @include position;
-  position: absolute;
+position: absolute;
+  z-index: 2;
   bottom: 7%;
   left: 50%;
+
   transform: translateX(-50%);
-  z-index: 2;
+
+  @include position;
 }
 
 .indicator {
-  border: 3px solid $color-white;
-  border-radius: $gap-lg;
-  z-index: 2;
+z-index: 2;
+
   display: block;
+
   padding: 0.5em;
+
   cursor: pointer;
   user-select: none;
+
+  border: 3px solid $color-white;
+  border-radius: $gap-lg;
   background-color: transparent;
 
   @include md {
-    padding: 0.35em;
+padding: 0.35em;
+
     border: 2px solid $color-white;
   }
 
   &.active {
-    border-color: $color-red;
-    box-shadow: 0px 0px 5px 2px $color-red;
+border-color: $color-red;
+    box-shadow: 0 0 5px 2px $color-red;
   }
 }
